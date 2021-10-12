@@ -1,0 +1,49 @@
+{% import "macros.html" as macros %}
+
+<html>
+    <head>
+        {{ macros.css_header() }}
+    </head>
+
+    <body bgcolor="{{ macros.bgcolor() }}">
+        <div>
+        <h1>ID.me Technical Exercise (URL shortener)</h1>
+        
+        {% if message %}
+            <b>{{ message }}</b>
+        {% endif %}
+
+        <a href="/create">Create Short URL</a>
+        <hr>
+
+        {% if url_list %}
+        <table border="0" cellpadding="5" cellspacing="2">
+            <tr>
+                <th>Short Slug</th>
+                <th>Long URL</th>
+                <th>Owner</th>
+                <th>Sidecar Text</th>
+                <th>Last Updated</th>
+                <th>Hit Count</th>
+                <th>&nbsp;</th>
+            </tr>
+
+            {% for single_record in url_list %}
+            <tr>
+                <td><a href="/{{ single_record['name'] }}">{{ single_record['name'] }}</a></td>
+                <td>{{ single_record['long_url'] }}</td>
+                <td>{{ single_record['owner'] }}</td>
+                <td>{{ single_record['sidecar_text'] }}</td>
+                <td>{{ single_record['last_updated'] }}</td>
+                <td>{{ single_record['hit_count'] }}</td>
+                <td><a href="/update/{{ single_record['name'] }}">edit</a></td>
+            </tr>
+            {% endfor %}
+
+        </table>
+        {% endif %}
+
+        {{ macros.footer(build_info) }}
+    </div>
+</body>
+</html>

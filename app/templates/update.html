@@ -1,0 +1,72 @@
+{% import "macros.html" as macros %}
+
+<html>
+    <head>
+        {{ macros.css_header() }}
+    </head>
+    
+    <body bgcolor="{{ macros.bgcolor() }}">
+        
+        <h1>ID.me Technical Exercise (URL shortener)</h1>
+        
+        {% if message %}
+            <b>{{ message }}</b>
+        {% endif %}
+
+        {% if single_record['name'] %}
+            <form action="/update/{{ single_record['name'] }}" method="post" id="form1">
+        {% else %}
+            <form action="/create" method="post" id="form1">
+        {% endif %}
+
+           <table>
+            <tr>
+                <td>Short Name:</td>
+                <td>
+                    {% if validation_dict and validation_dict['name'] %}
+                        <input text="text" name="name" value=""><br />
+                        <font color="red">{{ validation_dict['name'] }}</font>
+                    {% elif single_record and single_record['name'] %}
+                        {{ single_record['name'] }}
+                    {% else %}
+                        <input text="text" name="name">
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <td>Long URL:</td>
+                <td><input text="text" name="long_url" value="{{ single_record['long_url'] }}">
+                {% if validation_dict and validation_dict['long_url'] %}
+                    <br/><font color="red">{{ validation_dict['long_url'] }}</font>
+                {% endif %}  
+                </td>
+            </tr>
+            <tr>
+                <td>Sidecar Text:</td>
+                <td><input text="text" name="sidecar_text" value="{{ single_record['sidecar_text'] }}"></td></tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit" form="form1" value="Submit">Submit</button> &nbsp;&nbsp;
+                    <a href="/">Cancel</a>
+                </td>
+            </tr>
+        </table>
+        </form>
+        {% if woo %}
+            {% for single_record in url_list %}
+            <tr>
+                <td><a href="/{{ single_record['name'] }}">{{ single_record['name'] }}</a></td>
+                <td>{{ single_record['long_url'] }}</td>
+                <td>{{ single_record['owner'] }}</td>
+                <td>{{ single_record['sidecar_text'] }}</td>
+                <td>{{ single_record['last_updated'] }}</td>
+                <td>{{ single_record['hit_count'] }}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+        {% endif %}
+
+        {{ macros.footer(build_info) }}
+</body>
+</html>

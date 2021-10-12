@@ -1,0 +1,12 @@
+pymongo[srv]==3.12.0
+Flask==2.0.1
+blinker==1.4
+gunicorn==20.1.0
+sentry_sdk==1.4.3
+gevent==21.8.0
+validators==0.18.2
+
+#requests
+#oauthlib
+#pyOpenSSL
+#Flask-Login

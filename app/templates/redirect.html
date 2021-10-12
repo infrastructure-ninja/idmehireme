@@ -1,0 +1,19 @@
+{% import "macros.html" as macros %}
+
+<html>    
+<head> 
+  {{ macros.css_header() }}
+
+  <title>Redirection..</title>      
+  <meta http-equiv="refresh" content="{{ redirect_seconds }};URL='{{ url }}/'" />    
+</head>    
+<body bgcolor="{{ macros.bgcolor() }}">
+    {% if arbitrary_text %} <h1>{{ arbitrary_text }}</h1>{% endif %}
+
+    <p>You will automatically be redirected to <a href="{{ url }}/">{{ url }}</a> in
+    {{ redirect_seconds }} {% if redirect_seconds == 1 %}second{% else %}seconds{% endif %}.
+    <br />If you get impatient, click the link!</p> 
+    
+    {{ macros.footer(build_info) }}
+</body>  
+</html> 

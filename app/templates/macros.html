@@ -1,0 +1,25 @@
+{% macro css_header() -%}
+<style>
+    body {
+        font-family:  Arial, Helvetica, sans-serif;
+    }
+    div {
+        font-color: white;
+    }
+    a { color: #e98074; }
+    a:visited { color: #e98074; }
+    a:hover { color: #d8c3a5; }
+</style>
+{%- endmacro %}
+
+{% macro bgcolor() -%}#EAEAD7{%- endmacro %}
+
+
+{% macro footer(build_info) -%}
+<hr>
+<font color="#c0c0c0">
+meticulously conjured by Joel Caturia &lt;jcaturia@katratech.com&gt;<br/>
+built on: {{ build_info[0] }} - {{ build_info[1] }} - {{ build_info[2] }}<br/>
+</font>
+{%- endmacro %}
+
