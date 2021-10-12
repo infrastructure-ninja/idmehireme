@@ -51,3 +51,9 @@ variable "app_mongo_dbname" {
   description = "Name of our database on MongoDB"
 }
 
+
+variable "gcp_dashboard_json" {
+  type        = string
+  description = "The JSON we will import to become the monitoring dashboard"
+}
+

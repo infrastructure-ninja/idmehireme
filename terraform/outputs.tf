@@ -12,3 +12,4 @@ output "application_status_url" {
 output "route53_nameservers" {
   value = google_dns_managed_zone.idmehireme.name_servers
 }
+
